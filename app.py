@@ -8,7 +8,13 @@ cors = CORS(app,resource={r'/*':{'origins':'*'}})
 app.config['CORS_HEADERS'] = 'Content-type'
 app.secret_key= os.environ.get('secretKey',"mito")
 
-api.add_resource(resources.Transactions,'/')
+api.add_resource(resources.Transactions,'/transaction')
+api.add_resource(resources.Refund,'/refund/<string:id>')
+api.add_resource(resources.Plan,'/plan')
+
+@app.route('/')
+def home():
+    return "OK",200
 
 def main():
     port = int(os.environ.get("PORT",5000))
