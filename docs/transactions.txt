@@ -1,0 +1,292 @@
+
+** Referencias a api 
+API 
+-- https://gerajob.herokuapp.com
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/transaction - METODO POST
+######################################################################
+
+ - Dividindo uma transação
+ * Usando as split rules
+Para que os valores de uma transação sejam divididos entre 2 ou mais recebedores, 
+você precisa especificar algumas regras, que aqui chamamos de split rules. 
+Elas ditam quem são os envolvidos em uma transação, quanto cada um recebe e quais são as responsabilidades deles.
+Veja agora um exemplo de como criar uma transação com split e, em seguida, entenda melhor o que cada parâmetro significa.
+
+- Criando uma transação com split
+
+{
+        "amount": 21000,
+    "card_number": "4111111111111111",
+    "card_cvv": "123",
+    "card_expiration_date": "0922",
+    "card_holder_name": "Morpheus Fishburne",
+    "customer": {
+      "external_id": "#3311",
+      "name": "Morpheus Fishburne",
+      "type": "individual",
+      "country": "br",
+      "email": "mopheus@nabucodonozor.com",
+      "documents": [
+        {
+          "type": "cpf",
+          "number": "00000000000"
+        }
+      ],
+      "phone_numbers": ["+5511999998888", "+5511888889999"],
+      "birthday": "1965-01-01"
+    },
+    "billing": {
+      "name": "Trinity Moss",
+      "address": {
+        "country": "br",
+        "state": "sp",
+        "city": "Cotia",
+        "neighborhood": "Rio Cotia",
+        "street": "Rua Matrix",
+        "street_number": "9999",
+        "zipcode": "06714360"
+      }
+    },
+    "items": [
+      {
+        "id": "b123",
+        "title": "Blue pill",
+        "unit_price": 10000,
+        "quantity": 1,
+        "tangible": true
+      }
+    ],
+    "split_rules": [
+        {
+          "recipient_id": "re_cj6cglnhc0bbcbt6dbsl8fdcs",
+          "percentage": 50,
+          "liable": true,
+          "charge_processing_fee": true
+        },{
+          "recipient_id": "re_cj6cgqzy31irpmx6dj9h3xdln",
+          "percentage": 50,
+          "liable": true,
+          "charge_processing_fee": true
+        }
+      ]
+}
+
+OBS: caso o pagamento seja cartão de credito e o usuario tenha o "card_id",
+os parametros "card_number","card_cvv","card_expiration_date" e "card_holder_name" não serão mais necessário.
+
+Parâmetros de uma split rules
+Vamos agora ao significado de cada parâmetro:
+
+* recipient_id:             | id de um recebedor
+
+* charge_processing_fee     |   
+    Default: true	          | indica se o recebedor vinculado à regra será cobrado pelas taxas da transação
+
+* liable                    |  
+    Default: true	          | indica se o recebedor atrelado assumirá os riscos de chargeback da transação
+
+* amount                    |
+Ex:$49,00 = "4900"          | valor em centavos de quanto da transação irá para o recebedor.
+
+* percentage	              | valor em porcentagem de quanto da transação irá para o recebedor.
+Ex:
+
+* charge_remainder          | no caso de restos de divisão de taxas
+    Default: true para      | entre os dois recebedores exista,
+o primeiro recipient do     | aquele com esse parâmetro 'true'   
+conjunto de split rules	    | será cobrado desses centavos
+
+OBS: Caso deseje obter um boleto bancario, siga a ilustração abaixo:
+
+{
+  'amount': '10000', 
+  'payment_method': 'boleto',
+  'customer': {
+    'type': 'individual',
+    'country': 'br',
+    'email': 'daenerys.targaryen@gmail.com',
+    'name': 'Daenerys Targaryen',
+    'documents': [
+      {
+        'type': 'cpf',
+        'number': '00000000000'
+      }
+    ]
+  }
+}
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/transaction - METODO GET
+######################################################################
+
+Retorna um Array contendo objetos de transações, ordenadas a partir da transação realizada mais recentemente.
+ 
+
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/refund/{id} - METODO GET
+######################################################################
+
+Estorno
+
+Estornar uma transação com a API  é muito simples, seja ela de Cartão de crédito ou de Boleto bancário.
+Tudo o que você precisa fazer é enviar uma requisição GET para a rota /refund/:id, na qual :id é o ID da transação.
+
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan - METODO POST
+######################################################################
+
+O plano é o primeiro objeto que precisa ser criado na nossa base de dados, antes de partir para criação de uma assinatura,
+já que ele é responsável por definir quando e quanto devemos cobrar do seu cliente.
+
+Exemplo:
+{
+  "amount": 15000,
+  "days": 30,
+  "name": "The Pro Plan - Platinum  - Best Ever",
+  "trial_days": "7",
+  "payment_methods": [
+    "boleto",
+    "credit_card"
+  ],
+  "charges": null,
+  "installments": 1,
+  "invoice_reminder": null
+}
+
+Parâmetros de um plano
+Cada parâmetro listado a seguir é responsável por definir alguma característica das assinaturas que serão criadas,
+sendo alguns deles indicados como obrigatórios para garantir o devido funcionamento de nosso sistema.
+
+*name
+  Obrigatório        	-- Nome do plano.
+
+*amount
+  Obrigatório	        -- Valor que será cobrado recorrentemente (em centavos). Deve ser no mínimo 1 real. Ex: R$49,90 = 4990.
+
+*days
+  Obrigatório	        -- Prazo, em dias, para cobrança das parcelas. Ex: Para um plano mensal, days = 30.OBS: O dia da cobrança não será constante.
+
+*trial_days	          -- Dias para teste gratuito do plano. Valor começará a ser cobrado no dia trial_days + 1.
+
+*payment_methods	    -- Meios de pagamentos aceitos. Pode ser boleto, cartão de crédito ou ambos.
+
+*charges	            --	Número de cobranças que poderão ser feitas nesse plano. OBS: No caso de cartão de crédito, a cobrança feita na ativação da assinatura não é considerada. OBS: null irá cobrar o usuário indefinidamente, ou até o plano ser cancelado.
+
+*installments	        --	Número de parcelas entre cada cobrança (charges).Ex: Plano anual, válido por 2 anos, sendo que cada transação será dividida em 12 vezes. Nossos parâmetros serão: days = 365, installments = 12, charges = 1 (cartão de crédito) ou charges = 2 (boleto). OBS: Boleto sempre terá installments = 1.
+
+*invoice_reminder	    --	Dias para que o cliente seja avisado sobre o vencimento do boleto.
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan - METODO PUT
+######################################################################
+
+Para atualizar um plano basta enviar um json com as alterações desejadas e o id no corpo do json.
+
+Ex: 
+
+{
+    "id":"573943",
+    "trial_days":"7"
+}
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan - METODO GET
+######################################################################
+
+Retornas todos os planos cadastrados
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan/subscription - METODO POST
+#########################################################################
+
+Para realizar uma assinatura em um dos planos criados é necessário enviar um json para o endpoint /plan/subscription,
+veja o exemplo abaixo:
+
+Ex:
+{
+    "card_id": "card_cj6qvosem04w3nu6dm20nu8od",
+    "customer":{
+        "email":"jorah.mormont@gameofthrones.com",
+        "name":"Sir Jorah Mormont",
+        "document_number":"18152564000105",
+        "address":{
+            "zipcode":"04571020",
+            "neighborhood":"Cidade Moncoes",
+            "street":"R. Dr. Geraldo Campos Moreira",
+            "street_number":"240"
+        },
+        "phone": {
+            "number":"987654321",
+            "ddd":"11"
+        }
+    },
+    "payment_method": "credit_card",
+    "plan_id": "201836",
+    "postback_url": "http://requestb.in/zyn5obzy"
+}
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan/subscription - METODO GET
+#########################################################################
+
+Busca todas as assinaturas realizadas.
+
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan/subscription/{id} - METODO GET
+#########################################################################
+
+Busca uma assinatura especifica.
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan/subscription/{id} - METODO PUT
+#########################################################################
+
+Atualiza uma assinatura especifica.
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan/subscription/{id}/transactions - METODO GET
+#########################################################################
+
+Busca todas transações de uma assinatura especifica.
+
+
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/plan/subscription/{id}/cancel - METODO POST
+#########################################################################
+
+Cancelar uma assinatura.
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/card - METODO POST
+#########################################################################
+
+Você pode armazenar os dados do cartão do seu cliente através da rota /card, 
+assim você poderá usar o id do objeto gerado para realizar futuras transações, no lugar do card_hash.
+
+Ex: 
+{
+    "card_expiration_date": "1122",
+    "card_number": "4018720572598048",
+    "card_cvv": "123",
+    "card_holder_name": "Cersei Lannister"
+}
+
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/card - METODO GET
+#########################################################################
+
+Busca todos os cartões salvos
+
+
+#########################################################################
+ENDPOINT = https://gerajob.herokuapp.com/card/{id} - METODO GET
+#########################################################################
+
+Busca um cartão especifico.

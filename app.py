@@ -1,16 +1,16 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask_restful import Api
-import os,resources
+from resources import routes
+import os
+
 app = Flask(__name__)
 api = Api(app = app)
 cors = CORS(app,resource={r'/*':{'origins':'*'}})
 app.config['CORS_HEADERS'] = 'Content-type'
 app.secret_key= os.environ.get('secretKey',"mito")
 
-api.add_resource(resources.Transactions,'/transaction')
-api.add_resource(resources.Refund,'/refund/<string:id>')
-api.add_resource(resources.Plan,'/plan')
+routes(api)
 
 @app.route('/')
 def home():
