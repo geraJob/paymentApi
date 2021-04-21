@@ -11,3 +11,6 @@ class UserProfileRepositoryImpl(UserProfileRepository):
     
     def updateById(self, user_profile):
         self.datasource.updateById(user_profile)
+    
+    def createById(self,user_profile):
+        self.datasource.createById(user_profile)

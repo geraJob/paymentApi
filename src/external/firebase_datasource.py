@@ -11,5 +11,8 @@ class FirebaseDataSource(UserProfileDataSource):
     
     def updateById(self,user_profile : ResultUserProfile):
         self._db.collection('users').document(user_profile.id).update(user_profile.toMap())
+    
+    def createById(self,user_profile : ResultUserProfile):
+        self._db.collection('users').document(user_profile.id).set(user_profile.toMap())
         
         

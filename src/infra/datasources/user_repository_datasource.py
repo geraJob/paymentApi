@@ -9,3 +9,7 @@ class UserProfileDataSource(metaclass=ABCMeta):
     @abstractclassmethod
     def updateById(self, user_profile:UserProfile):
         pass
+
+    @abstractclassmethod
+    def createById(self,user_profile):
+        pass

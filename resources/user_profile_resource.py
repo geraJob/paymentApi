@@ -33,3 +33,19 @@ class UserProfileResource(Resource):
                 'status':409,
                 'response':str(e)
             },200
+    
+    @decorator_key
+    def post(self,id):
+        data = request.json
+        user_profile : ResultUserProfile = ResultUserProfile.from_to_dict(data,id)
+        try:
+            Core().user_profile_usecases.createById(user_profile)
+            return {
+                'status':201,
+                'response':"Created successfully"
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            },200

@@ -10,6 +10,10 @@ class UserProfileRepository(metaclass=ABCMeta):
     def updateById(self,user_profile: UserProfile):
         pass
 
+    @abstractmethod
+    def createById(self,user_profile):
+        pass
+
 
 
 

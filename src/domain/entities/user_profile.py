@@ -8,6 +8,7 @@ class UserProfile:
     documentType = "",
     numberDocument = "",
     birthday = "",
+    business ="",
     email = "",
     country = "",
     street = "",
@@ -20,6 +21,7 @@ class UserProfile:
         self.name : str = name
         self.lastName: str = lastName
         self.phone: str = phone
+        self.business = business
         self.documentType: str = documentType
         self.numberDocument: str = numberDocument
         self.birthday : str = birthday

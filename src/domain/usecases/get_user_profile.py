@@ -8,6 +8,10 @@ class GetUserProfile(metaclass=ABCMeta):
     def updateById(self,user_profile):
         pass
 
+    @abstractclassmethod
+    def createById(self,user_profile):
+        pass
+
 
 class GetUserProfileImpl(GetUserProfile):
     repository : UserProfileRepository 
@@ -19,5 +23,8 @@ class GetUserProfileImpl(GetUserProfile):
     
     def updateById(self,user_profile):
         self.repository.updateById(user_profile)
+    
+    def createById(self,user_profile):
+        self.repository.createById(user_profile)
 
 
