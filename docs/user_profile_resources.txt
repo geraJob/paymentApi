@@ -6,4 +6,56 @@ API
 ENDPOINT = https://gerajob.herokuapp.com/user/{id} - METODO GET
 ######################################################################
 
-Ess metodo tem como objetivo retonar um json com dados do usuario
+Esse metodo tem como objetivo retonar um json com o perfil do usuario,
+veja um exemplo abaixo:
+
+{
+    "status": 200,
+    "response": {
+        "name": "Pamela",
+        "lastName": "",
+        "phone": "",
+        "documentType": "",
+        "numberDocument": "",
+        "birthday": "",
+        "email": "",
+        "country": "",
+        "business": "",
+        "street": "",
+        "streetnumber": 0,
+        "zipcode": "",
+        "plan": "",
+        "subscription": ""
+    }
+}
+
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/user/{id} - METODO PUT
+######################################################################
+
+Esse metodo tem como objetivo atulizar os dados de usuario,
+enviando um json como o do exemplo abaixo é possivel realizar essa opeção.
+
+{
+        "name": "Pamela",
+        "lastName": "",
+        "phone": "",
+        "documentType": "",
+        "numberDocument": "",
+        "birthday": "",
+        "email": "",
+        "country": "",
+        "business": "",
+        "street": "",
+        "streetnumber": 0,
+        "zipcode": "",
+        "plan": "",
+        "subscription": ""
+    }
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/user/{id} - METODO POST
+######################################################################
+
+O metodo post é para criação de perfil,
