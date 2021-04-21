@@ -8,3 +8,6 @@ class UserProfileRepositoryImpl(UserProfileRepository):
     
     def getById(self,id):
         return self.datasource.getById(id)
+    
+    def updateById(self, user_profile):
+        self.datasource.updateById(user_profile)

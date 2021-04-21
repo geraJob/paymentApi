@@ -8,5 +8,8 @@ class FirebaseDataSource(UserProfileDataSource):
         result = self._db.collection('users').document(id).get()
         user_profile = ResultUserProfile.from_to_dict(result.to_dict(),result.id)
         return user_profile
+    
+    def updateById(self,user_profile : ResultUserProfile):
+        self._db.collection('users').document(user_profile.id).update(user_profile.toMap())
         
         

@@ -67,7 +67,7 @@ class ResultUserProfile(UserProfile):
 
     def toMap(self):
         return {
-            'id':self.id,
+           
             'name':self.name,
             'lastName':self.lastName,
             'phone':self.phone,
