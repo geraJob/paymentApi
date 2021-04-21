@@ -13,6 +13,8 @@ class ResultUserProfile(UserProfile):
     country = "",
     street = "",
     business ="",
+    plan = "",
+    subscription = "",
     city = "",
     neighborhood = "",
     streetnumber = "",
@@ -26,7 +28,9 @@ class ResultUserProfile(UserProfile):
     numberDocument = "",
     birthday = "",
     email = "",
+    subscription = "",
     country = "",
+    plan = "",
     business ="",
     street = "",
     city = "",
@@ -41,6 +45,8 @@ class ResultUserProfile(UserProfile):
         self.numberDocument: str = numberDocument
         self.birthday : str = birthday
         self.email : str = email
+        self.plan = plan
+        self.subscription = subscription
         self.business = business
         self.country : str = country
         self.street : str = street
@@ -63,6 +69,8 @@ class ResultUserProfile(UserProfile):
     business = data['business'] if 'business' in data else "",
     country =  data['country'] if 'country' in data else "",
     street = data['street'] if 'street' in data else "",
+    plan = data['plan'] if 'plan' in data else "",
+    subscription = data['subscription'] if 'subscription' in data else "",
     city = data['city'] if 'city' in data else "",
     neighborhood = data['neighborhood'] if 'neighborhood' in data else "",
     streetnumber = data['streetnumber'] if 'streetnumber' in data else 0,
@@ -83,7 +91,9 @@ class ResultUserProfile(UserProfile):
             'business':self.business,
             'street':self.street,
             'streetnumber':self.streetnumber,
-            'zipcode':self.zipcode
+            'zipcode':self.zipcode,
+            'plan':self.plan,
+            'subscription':self.subscription
         }
 
 

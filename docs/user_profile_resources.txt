@@ -1,0 +1,9 @@
+** Referencias a api 
+API 
+-- https://gerajob.herokuapp.com
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/user/{id} - METODO GET
+######################################################################
+
+Ess metodo tem como objetivo retonar um json com dados do usuario

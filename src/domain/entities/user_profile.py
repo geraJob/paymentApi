@@ -10,8 +10,10 @@ class UserProfile:
     birthday = "",
     business ="",
     email = "",
+    subscription = "",
     country = "",
     street = "",
+    plan = "",
     city ="",
     neighborhood = "",
     streetnumber = "",
@@ -21,11 +23,13 @@ class UserProfile:
         self.name : str = name
         self.lastName: str = lastName
         self.phone: str = phone
-        self.business = business
+        self.business : str = business
         self.documentType: str = documentType
         self.numberDocument: str = numberDocument
         self.birthday : str = birthday
+        self.subscription = subscription
         self.email : str = email
+        self.plan : str = plan
         self.country : str = country
         self.street : str = street
         self.city : str = city
