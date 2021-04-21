@@ -13,6 +13,9 @@ class UserProfile:
     subscription = "",
     country = "",
     street = "",
+    recipientId = "",
+    createAt = "",
+    photo = "",
     plan = "",
     city ="",
     neighborhood = "",
@@ -21,9 +24,12 @@ class UserProfile:
     **kwargs):
         self.id : str = id
         self.name : str = name
+        self.photo = photo
         self.lastName: str = lastName
         self.phone: str = phone
         self.business : str = business
+        self.createAt = createAt
+        self.recipientId = recipientId
         self.documentType: str = documentType
         self.numberDocument: str = numberDocument
         self.birthday : str = birthday

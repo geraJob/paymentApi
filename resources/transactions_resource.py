@@ -239,17 +239,116 @@ class CardById(Resource):
                 'response':str(e)
             },200
 
+class Recipient(Resource):
+    @decorator_key
+    def post(self):
+        data = request.json
+        try:
+            recipient = gateway.recipient.create(data)
+            return {
+                'status':201,
+                'response':recipient
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            },200
+    
+    @decorator_key
+    def get(self):
+        try:
+            result = gateway.recipient.find_all()
+            return {
+                'status':200,
+                'response':result
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            },200
+
+class RecipientById(Resource):
+    @decorator_key
+    def get(self,id):
+        try:
+            recipient = gateway.recipient.find_by(
+                {'id':id}
+            )
+            return {
+                'status':200,
+                'response':recipient
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            },200
+    @decorator_key
+    def put(self,id):
+        data = request.json
+        try:
+            recipient = gateway.recipient.update_recipient(id,data)
+            return {
+                'status':201,
+                'response': recipient
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            }
+
+class BalanceByRecipient(Resource):
+    @decorator_key
+    def get(self,id):
+        try: 
+            balance = gateway.recipient_balance(str(id))
+            return {
+                'status':200,
+                'response':balance
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            },200
 
 
+class BalanceByRecipientOperation(Resource):
+    @decorator_key
+    def get(self,id):
+        try: 
+            balance = gateway.recipient_balance_operation(str(id))
+            return {
+                'status':200,
+                'response':balance
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            },200
 
-
-
-
-
+class BalanceByRecipientOperationById(Resource):
+    @decorator_key
+    def get(self,recipient_id,operation_id):
+        try: 
+            balance = gateway.recipient_balance_operation_id(recipient_id,operation_id)
+            return {
+                'status':200,
+                'response':balance
+            },200
+        except Exception as e:
+            return {
+                'status':409,
+                'response':str(e)
+            },200
     
 
 
 
 
 
-    
+

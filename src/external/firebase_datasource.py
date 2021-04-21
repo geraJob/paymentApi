@@ -1,6 +1,7 @@
 from src.infra.datasources.user_repository_datasource import UserProfileDataSource
 from src.infra.models.result_user_profile import ResultUserProfile
-class FirebaseDataSource(UserProfileDataSource):
+
+class FirebaseDataSourceUserProfile(UserProfileDataSource):
     _db = None
     def __init__(self,db,**kwargs):
         self._db = db

@@ -12,10 +12,13 @@ class ResultUserProfile(UserProfile):
     email = "",
     country = "",
     street = "",
+    recipientId = "",
     business ="",
     plan = "",
     subscription = "",
     city = "",
+    createAt= "",
+    photo = "",
     neighborhood = "",
     streetnumber = "",
     zipcode ="",
@@ -27,9 +30,12 @@ class ResultUserProfile(UserProfile):
     documentType = "",
     numberDocument = "",
     birthday = "",
+    recipientId= "",
     email = "",
     subscription = "",
     country = "",
+    createAt= "",
+    photo = "",
     plan = "",
     business ="",
     street = "",
@@ -39,13 +45,16 @@ class ResultUserProfile(UserProfile):
     zipcode ="",**kwargs)        
         self.id : str = id
         self.name : str = name
+        self.photo = photo
         self.lastName: str = lastName
         self.phone: str = phone
         self.documentType: str = documentType
         self.numberDocument: str = numberDocument
         self.birthday : str = birthday
+        self.createAt = createAt
         self.email : str = email
         self.plan = plan
+        self.recipientId = recipientId
         self.subscription = subscription
         self.business = business
         self.country : str = country
@@ -69,7 +78,10 @@ class ResultUserProfile(UserProfile):
     business = data['business'] if 'business' in data else "",
     country =  data['country'] if 'country' in data else "",
     street = data['street'] if 'street' in data else "",
+    recipientId=data['recipientId'] if 'recipientId' in data else "",
     plan = data['plan'] if 'plan' in data else "",
+    photo = data['photo'] if 'photo' in data else "",
+    createAt= = data['createAt'] if 'creatAt' in data else "",
     subscription = data['subscription'] if 'subscription' in data else "",
     city = data['city'] if 'city' in data else "",
     neighborhood = data['neighborhood'] if 'neighborhood' in data else "",
@@ -86,10 +98,13 @@ class ResultUserProfile(UserProfile):
             'documentType':self.documentType,
             'numberDocument':self.numberDocument,
             'birthday':self.birthday,
+            'photo':self.photo,
             'email':self.email,
             'country':self.country,
             'business':self.business,
             'street':self.street,
+            'recipientId':self.recipientId,
+            'creatAt':self.createAt,
             'streetnumber':self.streetnumber,
             'zipcode':self.zipcode,
             'plan':self.plan,

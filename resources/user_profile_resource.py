@@ -26,7 +26,7 @@ class UserProfileResource(Resource):
             Core().user_profile_usecases.updateById(user_profile)
             return {
                 'status':201,
-                'response':"Succesfuly update"
+                'response':user_profile.toMap()
             },200
         except Exception as e:
             return {
@@ -42,7 +42,7 @@ class UserProfileResource(Resource):
             Core().user_profile_usecases.createById(user_profile)
             return {
                 'status':201,
-                'response':"Created successfully"
+                'response':user_profile.toMap()
             },200
         except Exception as e:
             return {

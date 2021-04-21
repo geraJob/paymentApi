@@ -1,4 +1,4 @@
-from resources.transactions_resource import Transactions,Refund,Plan,Subscription,SubscriptionById,SubscriptionAllTransactionsById,Cards,CardById,SubscriptionCancel
+from resources.transactions_resource import *
 from resources.user_profile_resource import UserProfileResource
 def routes(api):
     api.add_resource(Transactions,'/transaction')
@@ -11,3 +11,8 @@ def routes(api):
     api.add_resource(Cards,'/card')
     api.add_resource(CardById,'/card/<string:id>')
     api.add_resource(UserProfileResource,'/user/<string:id>')
+    api.add_resource(Recipient,'/recipients')
+    api.add_resource(RecipientById,'/recipients/<string:id>')
+    api.add_resource(BalanceByRecipient,'/recipients/<string:id>/balance')
+    api.add_resource(BalanceByRecipientOperation,'/recipients/<string:id>/balance/operations')
+    api.add_resource(BalanceByRecipientOperationById,'/recipients/<string:recipient_id>/balance/operations/<string:operation_id>')
