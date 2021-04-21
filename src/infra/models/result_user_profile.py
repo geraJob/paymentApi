@@ -81,7 +81,7 @@ class ResultUserProfile(UserProfile):
     recipientId=data['recipientId'] if 'recipientId' in data else "",
     plan = data['plan'] if 'plan' in data else "",
     photo = data['photo'] if 'photo' in data else "",
-    createAt= = data['createAt'] if 'creatAt' in data else "",
+    createAt= data['createAt'] if 'creatAt' in data else "",
     subscription = data['subscription'] if 'subscription' in data else "",
     city = data['city'] if 'city' in data else "",
     neighborhood = data['neighborhood'] if 'neighborhood' in data else "",
