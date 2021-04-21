@@ -304,7 +304,7 @@ class BalanceByRecipient(Resource):
     @decorator_key
     def get(self,id):
         try: 
-            balance = gateway.recipient_balance(str(id))
+            balance = gateway.recipient.recipient_balance(str(id))
             return {
                 'status':200,
                 'response':balance
@@ -320,7 +320,7 @@ class BalanceByRecipientOperation(Resource):
     @decorator_key
     def get(self,id):
         try: 
-            balance = gateway.recipient_balance_operation(str(id))
+            balance = gateway.recipient.recipient_balance_operation(str(id))
             return {
                 'status':200,
                 'response':balance
@@ -335,7 +335,7 @@ class BalanceByRecipientOperationById(Resource):
     @decorator_key
     def get(self,recipient_id,operation_id):
         try: 
-            balance = gateway.recipient_balance_operation_id(recipient_id,operation_id)
+            balance = gateway.recipient.recipient_balance_operation_id(recipient_id,operation_id)
             return {
                 'status':200,
                 'response':balance
