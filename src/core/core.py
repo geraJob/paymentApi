@@ -11,7 +11,6 @@ class Singleton(type):
 
 
 class Core(object, metaclass=Singleton):
-    
     def __init__(self,**kwargs):
         # stretch user profile
         self._firebase_datasource_user_profile = externals.FirebaseDataSourceUserProfile(db)
@@ -21,7 +20,11 @@ class Core(object, metaclass=Singleton):
         self._firebase_datasource_design_wall = externals.FirebaseDataSourceDesignWall(db)
         self._design_wall_repository = repositories.DesignWallRepositoryImpl(self._firebase_datasource_design_wall)
         self.design_wall_usecases = usecases.DesignWallImpl(self._design_wall_repository)
-        # stretch de talent market
+        # stretch of talent market
         self._firebase_datasource_talent_market = externals.FirebaseDataSourceTalentMarket(db)
         self._talent_market_repository = repositories.talent_market_repository.TalentMarketRepositoryImpl(self._firebase_datasource_talent_market)
-        self.talent_market_usecases = usecases.talent_market.TalentMarketImpl(self._talent_market_repository)       
+        self.talent_market_usecases = usecases.talent_market.TalentMarketImpl(self._talent_market_repository)
+        # stretch of predefined project    
+        self._firebase_datasource_predefined_project = externals.FirebaseDataSourcePrefinedProject(db)
+        self._predefined_project_repository = repositories.prefined_project_repository.PredefinedProjectRepositoryImpl(self._firebase_datasource_predefined_project)
+        self.predefined_project_usecases = usecases.predefined_project.PredefinedProjectImpl(self._predefined_project_repository) 

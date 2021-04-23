@@ -1,3 +1,4 @@
 from src.infra.models.result_design_wall_item import ResultItemDesignWall
 from src.infra.models.result_talent_market_item import ResultTalentMarketItem
 from src.infra.models.result_user_profile import ResultUserProfile
+from src.infra.models.result_predefined_project import ResultPredefinedProject

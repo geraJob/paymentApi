@@ -1,3 +1,4 @@
 from src.infra.repositories.user_profile_repository import UserProfileRepositoryImpl
 from src.infra.repositories.design_wall_repository import DesignWallRepositoryImpl
 from src.infra.repositories.talent_market_repository import TalentMarketRepositoryImpl
+from src.infra.repositories.prefined_project_repository import PredefinedProjectRepositoryImpl

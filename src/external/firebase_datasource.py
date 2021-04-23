@@ -71,3 +71,27 @@ class FirebaseDataSourceTalentMarket(datasources.talent_market_datasource.Talent
         item.id = result[1].id
         return item
 
+# Predefined Project
+class FirebaseDataSourcePrefinedProject(datasources.predefined_project_datasource.PredefinedProjectDataSource):
+    _db:Firebase
+    collection = 'predefinedProject'
+    def __init__(self,db:Firebase,**kwargs):
+        self._db = db
+    def getById(self,id):
+        result = self._db.collection(self.collection).document(id).get()
+        talentMarketItem = models.result_predefined_project.ResultPredefinedProject.fromData(result.to_dict(),id = id)
+        return talentMarketItem
+    def getAll(self):
+        docs = self._db.collection(self.collection).stream()
+        result = [models.result_predefined_project.ResultPredefinedProject.fromData(doc.to_dict(),id=doc.id) for doc in docs]
+        return result
+    def  updateByItem(self,item:models.result_predefined_project.ResultPredefinedProject):
+        self._db.collection(self.collection).document(item.id).update(item.toMap())
+        return item
+    def createItem(self,item : models.result_predefined_project.ResultPredefinedProject):
+        item.createAt = str(datetime.now())
+        item.millisecondsEpoch = datetime_in_ms()
+        result = self._db.collection(self.collection).add(item.toMap())
+        item.id = result[1].id
+        return item
+
