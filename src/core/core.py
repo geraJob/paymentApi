@@ -1,7 +1,7 @@
 from features.firebase import db
-from src.external.firebase_datasource import FirebaseDataSourceUserProfile
-from src.infra.repositories.user_profile_repository import UserProfileRepositoryImpl
-from src.domain.usecases.get_user_profile import GetUserProfileImpl
+import src.external as externals
+import src.domain.usecases as usecases
+import src.infra.repositories as repositories
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
@@ -14,7 +14,14 @@ class Core(object, metaclass=Singleton):
     
     def __init__(self,**kwargs):
         # stretch user profile
-        self.firebase_datasource = FirebaseDataSourceUserProfile(db)
-        self.user_profile_repository = UserProfileRepositoryImpl(self.firebase_datasource)
-        self.user_profile_usecases = GetUserProfileImpl(self.user_profile_repository)
-        
+        self._firebase_datasource_user_profile = externals.FirebaseDataSourceUserProfile(db)
+        self._user_profile_repository = repositories.UserProfileRepositoryImpl(self._firebase_datasource_user_profile)
+        self.user_profile_usecases = usecases.GetUserProfileImpl(self._user_profile_repository)
+        # stretch design wall
+        self._firebase_datasource_design_wall = externals.FirebaseDataSourceDesignWall(db)
+        self._design_wall_repository = repositories.DesignWallRepositoryImpl(self._firebase_datasource_design_wall)
+        self.design_wall_usecases = usecases.DesignWallImpl(self._design_wall_repository)
+        # stretch de talent market
+        self._firebase_datasource_talent_market = externals.FirebaseDataSourceTalentMarket(db)
+        self._talent_market_repository = repositories.talent_market_repository.TalentMarketRepositoryImpl(self._firebase_datasource_talent_market)
+        self.talent_market_usecases = usecases.talent_market.TalentMarketImpl(self._talent_market_repository)       

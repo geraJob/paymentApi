@@ -1,5 +1,7 @@
 from resources.transactions_resource import *
 from resources.user_profile_resource import UserProfileResource
+from resources.design_wall_resource import *
+from resources.talent_market_resource import *
 def routes(api):
     api.add_resource(Transactions,'/transaction')
     api.add_resource(Refund,'/refund/<string:id>')
@@ -16,3 +18,8 @@ def routes(api):
     api.add_resource(BalanceByRecipient,'/recipients/<string:id>/balance')
     api.add_resource(BalanceByRecipientOperation,'/recipients/<string:id>/balance/operations')
     api.add_resource(BalanceByRecipientOperationById,'/recipients/<string:recipient_id>/balance/operations/<string:operation_id>')
+    api.add_resource(DesignWallResource,'/designwall')
+    api.add_resource(DesignWallById,'/designwall/<string:id>')
+    api.add_resource(TalentMarket,'/talentmarket')
+    api.add_resource(TalentMarketById,'/talentmarket/<string:id>')
+    

@@ -6,6 +6,7 @@ from src.infra.models.result_user_profile import ResultUserProfile
 class UserProfileResource(Resource):
     @decorator_key
     def get(self,id):
+        
         try:
             user_profile : ResultUserProfile= Core().user_profile_usecases.getById(id)
             return {
@@ -38,6 +39,10 @@ class UserProfileResource(Resource):
     def post(self,id):
         data = request.json
         user_profile : ResultUserProfile = ResultUserProfile.from_to_dict(data,id)
+        from datetime import datetime
+        from utils.consts import datetime_in_ms
+        user_profile.createAt = str(datetime.now())
+        user_profile.millisecondsEpochCreateAt = datetime_in_ms()
         try:
             Core().user_profile_usecases.createById(user_profile)
             return {

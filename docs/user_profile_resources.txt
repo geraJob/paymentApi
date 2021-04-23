@@ -8,7 +8,6 @@ ENDPOINT = https://gerajob.herokuapp.com/user/{id} - METODO GET
 
 Esse metodo tem como objetivo retonar um json com o perfil do usuario,
 veja um exemplo abaixo:
-
 {
     "status": 200,
     "response": {
@@ -18,13 +17,24 @@ veja um exemplo abaixo:
         "documentType": "",
         "numberDocument": "",
         "birthday": "",
+        "photo": "",
         "email": "",
         "country": "",
         "business": "",
+        "title": "",
+        "work": {},
+        "subCategory": "",
+        "category": "",
+        "priceByHour": 0.0,
+        "description": "",
         "street": "",
+        "recipientId": "",
+        "createAt": "",
         "streetnumber": 0,
+        "millisecondsEpochCreateAt": 1619040606723,
         "zipcode": "",
         "plan": "",
+        "education": [],
         "subscription": ""
     }
 }
@@ -59,3 +69,31 @@ ENDPOINT = https://gerajob.herokuapp.com/user/{id} - METODO POST
 ######################################################################
 
 O metodo post é para criação de perfil,
+Ex request:
+{
+        "name": "Pamela",
+        "lastName": "",
+        "phone": "",
+        "documentType": "",
+        "numberDocument": "",
+        "birthday": "",
+        "photo": "",
+        "email": "",
+        "country": "",
+        "business": "",
+        "title": "",
+        "work": {},
+        "subCategory": "",
+        "category": "",
+        "priceByHour": 0.0,
+        "description": "",
+        "street": "",
+        "recipientId": "",
+        "createAt": "",
+        "streetnumber": 0,
+        "millisecondsEpochCreateAt": 1619040606723,
+        "zipcode": "",
+        "plan": "",
+        "education": [],
+        "subscription": ""
+    }

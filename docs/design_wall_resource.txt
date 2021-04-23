@@ -1,0 +1,144 @@
+** Referencias a api 
+API 
+-- https://gerajob.herokuapp.com
+
+== PAREDE DE PROJETO ****
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/designwall - METODO POST
+######################################################################
+
+Para salvar um projeto na parede de projeto é usada essa ENDPOINT no metodo POST,
+esse metodo recebe um json.
+Veja a requisição a seguir.
+
+Ex request sample:
+
+    { 
+        "title":"Portfolio"
+    }
+
+Ex response:
+{
+    "status": 201,
+    "response": {
+        "serviceDefinition": "",
+        "budget": 0.0,
+        "deadline": "",
+        "title": "Portfolio",
+        "category": "",
+        "subCategory": "",
+        "projectSize": "",
+        "uidDesignated": "",
+        "createAt": "2021-04-22 12:04:18.817258",
+        "availability": "",
+        "tags": "",
+        "millisecondsEpoch": 1619103858812,
+        "id": "MQSQ6SQGKc8NJUkUCDty"
+    }
+}
+
+
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/designwall - METODO GET
+######################################################################
+
+Para obter os items salvos na parede de projeto essa ENDPOINT com o metodo GET é o suficiente
+um json com uma lista de items salvos, veja o resposta data pela api a seguir:
+
+Ex response:
+
+{
+    "status": 200,
+    "response": [
+        {
+            "serviceDefinition": "",
+            "budget": 0.0,
+            "deadline": "",
+            "title": "Portfolio",
+            "category": "",
+            "subCategory": "",
+            "projectSize": "",
+            "uidDesignated": "",
+            "createAt": "2021-04-22 12:04:18.817258",
+            "availability": "",
+            "tags": "",
+            "millisecondsEpoch": 1619103858812,
+            "id": "MQSQ6SQGKc8NJUkUCDty"
+        },
+        {
+            "serviceDefinition": "",
+            "budget": 0.0,
+            "deadline": "",
+            "title": "Portfolio",
+            "category": "Flutter",
+            "subCategory": "",
+            "projectSize": "",
+            "uidDesignated": "",
+            "createAt": "2021-04-21 19:05:39.824265",
+            "availability": "",
+            "tags": "",
+            "millisecondsEpoch": 1619042739821,
+            "id": "weu17SSKWhje3Q01Gecz"
+        },
+        {
+            "serviceDefinition": "",
+            "budget": 0.0,
+            "deadline": "",
+            "title": "Portfolio",
+            "category": "",
+            "subCategory": "",
+            "projectSize": "",
+            "uidDesignated": "",
+            "createAt": "2021-04-22 11:33:01.265427",
+            "availability": "",
+            "tags": "",
+            "millisecondsEpoch": 1619101981262,
+            "id": "yuF4vD3DWlcu36bBnxhm"
+        }
+    ]
+}
+
+
+#################################################################################
+ENDPOINT = https://gerajob.herokuapp.com/designwall/{designwall_id} - METODO GET
+#################################################################################
+
+Para obter um item especifico da parade de projeto basta passar o "designwall_id" na ENDPOINT
+com o metdo get que ira te retornar um json com o item.
+
+
+#################################################################################
+ENDPOINT = https://gerajob.herokuapp.com/designwall/{designwall_id} - METODO PUT
+#################################################################################
+
+Para atualizar um item especifico basta passar o "designwall_id" na ENDPOINT com o metodo PUT
+enviando um json.
+
+Ex request:
+
+    { 
+    "budget": 100.0,
+    "deadline": "30 days",   
+    }
+
+Ex response:
+{
+    "status": 201,
+    "response": {
+        "serviceDefinition": "",
+        "budget": 100.0,
+        "deadline": "30 days",   
+        "title": "Portfolio",
+        "category": "Flutter",
+        "subCategory": "",
+        "projectSize": "",
+        "uidDesignated": "",
+        "createAt": "2021-04-21 19:05:39.824265",
+        "availability": "",
+        "tags": "",
+        "millisecondsEpoch": 1619042739821,
+        "id": "weu17SSKWhje3Q01Gecz"
+    }
+}

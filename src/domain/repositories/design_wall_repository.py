@@ -1,18 +1,15 @@
 from abc import ABCMeta, abstractclassmethod
 
-class ItemDesignWallRepository(metaclass=ABCMeta):
+class DesignWallRepository(metaclass=ABCMeta):
     @abstractclassmethod
     def getById(self,id):
         pass
-    
     @abstractclassmethod
     def getAll(self):
         pass
-
     @abstractclassmethod
-    def updateByItem(self,Item):
+    def updateByItem(self,item):
         pass
-
     @abstractclassmethod
-    def create(self,id):
+    def createItem(self,item):
         pass

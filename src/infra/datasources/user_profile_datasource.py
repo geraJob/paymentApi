@@ -13,3 +13,4 @@ class UserProfileDataSource(metaclass=ABCMeta):
     @abstractclassmethod
     def createById(self,user_profile):
         pass
+

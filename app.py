@@ -21,7 +21,9 @@ def main():
     app.run(host="0.0.0.0",port=port)
 
 def main_():
-    pass
+    from src.core.core import Core
+    from utils.consts import datetime_in_ms
+
     
 
 

@@ -1,0 +1,85 @@
+** Referencias a api 
+API 
+-- https://gerajob.herokuapp.com
+
+== MERCADO DE TALENTOS ****
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/talentmarket - METODO POST
+######################################################################
+
+Para publicar um projeto no mercado de talentos basta enviar um json para esse ENDPOINT 
+usando o metodo post.
+Ex sample request:
+
+{ 
+        "title":"Portfolio",
+         "budgetMin": 0.0,
+        "budgetMax": 0.0
+}
+
+Ex response:
+{
+    "status": 201,
+    "response": {
+        "serviceDefinition": "",
+        "budgetMin": 0.0,
+        "budgetMax": 0.0,
+        "deadline": "",
+        "title": "Portfolio",
+        "category": "",
+        "createAt": "2021-04-22 16:35:46.848228",
+        "proposal": "",
+        "subCategory": "",
+        "projectSize": "",
+        "availability": "",
+        "tags": "",
+        "millisecondsEpoch": 1619120146848,
+        "id": "FO3A92d2LhL1P9OXsgy3"
+    }
+}
+
+
+######################################################################
+ENDPOINT = https://gerajob.herokuapp.com/talentmarket - METODO GET
+######################################################################
+
+Para buscar todos os projetos do mercado de talentos basta fazer uma requisição  com metodo GET
+para essa ENDPOINT.
+
+Ex Response:
+
+{
+    "status": 200,
+    "response": [
+        {
+            "serviceDefinition": "",
+            "budgetMin": 40.0,
+            "budgetMax": 0.0,
+            "deadline": "",
+            "title": "",
+            "category": "",
+            "createAt": "",
+            "proposal": "",
+            "subCategory": "",
+            "projectSize": "",
+            "availability": "",
+            "tags": "",
+            "millisecondsEpoch": "",
+            "id": "FO3A92d2LhL1P9OXsgy3"
+        }
+    ]
+}
+
+
+#####################################################################################
+ENDPOINT = https://gerajob.herokuapp.com/talentmarket/{talentmarket_id} - METODO GET
+#####################################################################################
+
+Esse ENDPOINT retorna um projeto de mercado de talento espefico.
+
+#####################################################################################
+ENDPOINT = https://gerajob.herokuapp.com/talentmarket/{talentmarket_id} - METODO PUT
+#####################################################################################
+
+Esse ENDPOINT atualiza um 
